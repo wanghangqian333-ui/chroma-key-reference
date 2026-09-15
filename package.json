@@ -1,0 +1,30 @@
+{
+  "name": "chroma-key-reference",
+  "version": "1.0.0",
+  "description": "A dependency-free chroma key core, with a reproducible benchmark and reference tables.",
+  "type": "module",
+  "license": "MIT",
+  "exports": {
+    ".": "./src/keyer.mjs"
+  },
+  "files": [
+    "src/keyer.mjs",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node --test src/keyer.test.mjs",
+    "bench": "node bench/run.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "chroma-key",
+    "green-screen",
+    "keying",
+    "ycbcr",
+    "video",
+    "canvas"
+  ]
+}

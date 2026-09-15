@@ -1,0 +1,7 @@
+fixture,expected_hex,detected_hex,exact_match,max_channel_delta
+flat-green,#00b140,#00b140,true,0
+shadow-green,#00b140,#00a23b,false,15
+spill-green,#00b140,#00b140,true,0
+shadow-spill-green,#00b140,#009d39,false,20
+flat-blue,#0047bb,#0047bb,true,0
+neutral-white,#f2f2f2,#f2f2f2,true,0
