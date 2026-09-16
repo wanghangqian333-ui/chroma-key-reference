@@ -1,5 +1,7 @@
 # chroma-key-reference
 
+[![CI](https://github.com/wanghangqian333-ui/chroma-key-reference/actions/workflows/test.yml/badge.svg)](https://github.com/wanghangqian333-ui/chroma-key-reference/actions/workflows/test.yml)
+
 A dependency-free chroma key core for JavaScript, plus a reproducible benchmark
 and a set of reference tables. Runs in Node and in the browser, works on plain
 typed arrays, no canvas and no DOM.
