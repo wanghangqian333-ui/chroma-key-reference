@@ -19,6 +19,8 @@ at <https://greenscreenremover.net>; that page is a thin UI around `src/keyer.mj
 ```
 src/keyer.mjs             the keyer: colour maths, parameters, pixel loop, autoKey
 src/keyer.test.mjs        19 assertions, node:test, no dependencies
+src/zip-store.mjs         a dependency-free ZIP writer (stored entries, UTF-8 names)
+src/zip-store.test.mjs    11 assertions, including the published CRC-32 vectors
 bench/fixtures.mjs        six deterministic synthetic frames with ground-truth masks
 bench/run.mjs             regenerates everything in data/
 docs/algorithm.md         how it works, why, and what the measurements say
@@ -43,6 +45,33 @@ keyPixels(rgba, out, params);      // out is RGBA with backdrop alpha = 0
 `makeParams` is separated from the pixel loop on purpose: the parameter object
 holds the key colour in Cb/Cr, the two band edges, the spill strength and which
 channel dominates. Compute it once per frame, not once per pixel.
+
+## Packaging a PNG sequence
+
+`src/zip-store.mjs` is the other half of a browser-side exporter: a ZIP writer
+with no dependencies, 159 lines including comments, that stores every entry
+uncompressed. PNG is already compressed, so deflating it again costs CPU and
+buys close to nothing, and staying on method 0 keeps the writer small enough
+to read in one sitting. No ZIP64, no encryption, no data descriptor.
+
+```js
+import { zipStore, zipBlob } from './src/zip-store.mjs';
+
+const archive = zipStore(frames.map((data, i) => ({
+  name: `frame-${String(i + 1).padStart(4, '0')}.png`,
+  data,
+})), { date: new Date(2026, 0, 2, 3, 4, 5) });   // one fixed date ⇒ identical bytes
+```
+
+It writes UTF-8 names, rejects anything that is not bytes rather than
+producing a broken archive, and returns a `Uint8Array`; `zipBlob` wraps that
+in a `Blob` for a download.
+
+The CRC-32 vectors in `src/zip-store.test.mjs` are the published IEEE 802.3
+ones (`'123456789'` → `0xCBF43926`), cross-checked against `zlib.crc32`. The
+archives themselves were also opened with an independent implementation —
+Python's `zipfile`, where `testzip()` returns `None` and every stored file
+reads back byte-for-byte.
 
 ## The data
 
@@ -87,7 +116,7 @@ The short version, all of it from `data/tolerance-sweep.csv`:
 ## Tests
 
 ```sh
-node --test src/keyer.test.mjs
+npm test          # node --test src/keyer.test.mjs src/zip-store.test.mjs
 ```
 
 The assertions check properties, not memorised outputs: the exact key colour

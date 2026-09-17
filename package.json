@@ -1,19 +1,21 @@
 {
   "name": "chroma-key-reference",
   "version": "1.0.0",
-  "description": "A dependency-free chroma key core, with a reproducible benchmark and reference tables.",
+  "description": "A dependency-free chroma key core and ZIP writer, with a reproducible benchmark and reference tables.",
   "type": "module",
   "license": "MIT",
   "exports": {
-    ".": "./src/keyer.mjs"
+    ".": "./src/keyer.mjs",
+    "./zip-store": "./src/zip-store.mjs"
   },
   "files": [
     "src/keyer.mjs",
+    "src/zip-store.mjs",
     "README.md",
     "LICENSE"
   ],
   "scripts": {
-    "test": "node --test src/keyer.test.mjs",
+    "test": "node --test src/keyer.test.mjs src/zip-store.test.mjs",
     "bench": "node bench/run.mjs"
   },
   "engines": {
