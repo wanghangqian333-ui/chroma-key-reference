@@ -4,6 +4,11 @@
   "description": "A dependency-free chroma key core and ZIP writer, with a reproducible benchmark and reference tables.",
   "type": "module",
   "license": "MIT",
+  "homepage": "https://greenscreenremover.net",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wanghangqian333-ui/chroma-key-reference.git"
+  },
   "exports": {
     ".": "./src/keyer.mjs",
     "./zip-store": "./src/zip-store.mjs"
