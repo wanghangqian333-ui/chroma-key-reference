@@ -9,9 +9,26 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+
+      # actions/setup-node 偶发因网络抖动直接失败（run #1 / bf8357f 就是这一步挂的，
+      # 10 秒内失败、npm test 被跳过），不是代码问题。这里加一次重试兜底。
+      - name: Set up Node 20
+        id: node
+        continue-on-error: true
+        uses: actions/setup-node@v4
         with:
           node-version: '20'
+
+      - name: Set up Node 20 (retry)
+        if: steps.node.outcome == 'failure'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Show Node version
+        run: node --version
+
       - run: npm test
