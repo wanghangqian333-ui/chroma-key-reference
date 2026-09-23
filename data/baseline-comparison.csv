@@ -1,0 +1,25 @@
+fixture,key_hex,method,threshold,setting,tp,fp,fn,iou
+flat-green,#00b140,ours-cbcr,25,shipped default,55459,0,0,1.000000
+flat-green,#00b140,ours-cbcr,0,best tolerance,,,,1.000000
+flat-green,#00b140,baseline-rgb-euclid,1,oracle threshold,,,,1.000000
+flat-green,#00b140,baseline-green-dom,0,oracle threshold,,,,1.000000
+shadow-green,#00b140,ours-cbcr,25,shipped default,34258,0,21201,0.617718
+shadow-green,#00b140,ours-cbcr,40,best tolerance,,,,1.000000
+shadow-green,#00b140,baseline-rgb-euclid,104,oracle threshold,,,,1.000000
+shadow-green,#00b140,baseline-green-dom,0,oracle threshold,,,,1.000000
+spill-green,#00b140,ours-cbcr,25,shipped default,55459,0,0,1.000000
+spill-green,#00b140,ours-cbcr,0,best tolerance,,,,1.000000
+spill-green,#00b140,baseline-rgb-euclid,1,oracle threshold,,,,1.000000
+spill-green,#00b140,baseline-green-dom,89,oracle threshold,,,,1.000000
+shadow-spill-green,#00b140,ours-cbcr,25,shipped default,34534,2,20925,0.622672
+shadow-spill-green,#00b140,ours-cbcr,40,best tolerance,,,,0.966269
+shadow-spill-green,#00b140,baseline-rgb-euclid,98,oracle threshold,,,,0.973973
+shadow-spill-green,#00b140,baseline-green-dom,51,oracle threshold,,,,0.943086
+flat-blue,#0047bb,ours-cbcr,25,shipped default,55459,0,0,1.000000
+flat-blue,#0047bb,ours-cbcr,0,best tolerance,,,,1.000000
+flat-blue,#0047bb,baseline-rgb-euclid,1,oracle threshold,,,,1.000000
+flat-blue,#0047bb,baseline-green-dom,0,oracle threshold,,,,0.000000
+neutral-white,#f2f2f2,ours-cbcr,25,shipped default,49579,0,0,1.000000
+neutral-white,#f2f2f2,ours-cbcr,0,best tolerance,,,,1.000000
+neutral-white,#f2f2f2,baseline-rgb-euclid,1,oracle threshold,,,,1.000000
+neutral-white,#f2f2f2,baseline-green-dom,0,oracle threshold,,,,0.000000
